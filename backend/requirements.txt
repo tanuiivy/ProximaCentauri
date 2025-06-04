@@ -1,7 +1,8 @@
 Flask
 Flask-SQLAlchemy
 Flask-Migrate
-Flask-CORS
-Flask-JWT-Extended
+Flask-CORS -> helps Flask app accept requests from different domains
+Flask-JWT-Extended-> JSON Web token which is a secure way to prove someone is logged in - using REST API
+(basically like service password-encryption in NRP)
 Flask-RESTful
 SQLAlchemy-Serializer
