@@ -9,7 +9,7 @@ class Group(db.Model, SerializerMixin):
     description = db.Column(db.String(255), nullable=True)
     
     users = db.relationship('User', backref='group', lazy=True)
-    groupmembers = db.relationship('GroupMembers', back_populates='group', lazy=True)
+    groupmember= db.relationship('GroupMember', back_populates='group', lazy=True)
 
     def __repr__(self):
-        return f"<Group {self.name}>"
+        return f"<Group {self.group_name}>"
