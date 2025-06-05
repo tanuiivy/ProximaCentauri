@@ -11,18 +11,18 @@ groupmember_bp = Blueprint('groupmember', __name__)
 def create_group_member():
     data = request.get_json()
     username= data.get('username')
-    group_name = data.get('group_id')
-    role = data.get('role', 'member')  # Default role is 'member'
+    group_name = data.get('group_name')
+    role = data.get('role', 'Member')  # Default role is 'member'
 
    # Validate input
     user = User.query.filter_by(username=username).first()
-    group = Group.query.filter_by(name=group_name).first()
+    group = Group.query.filter_by(group_name=group_name).first()
 
     if not user or not group:
         return jsonify({'error': 'User and Group must be valid'}), 400
 
     # Check if the user is already a member of the group
-    existing_member = GroupMember.query.filter_by(username=username, group_name=group.group_name).first()
+    existing_member = GroupMember.query.filter_by(user_id=user.id, group_id=group.id).first()
     if existing_member:
         return jsonify({'error': 'User is already a member of this group'}), 400
 

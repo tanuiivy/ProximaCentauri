@@ -18,10 +18,10 @@ db.init_app(app)
 migrate.init_app(app, db)
 cors.init_app(app)
 
-app.register_blueprint(authentication_bp)
-app.register_blueprint(users_bp)
-app.register_blueprint(groups_bp)
-app.register_blueprint(groupmember_bp)
+app.register_blueprint(authentication_bp, url_prefix='/auth')
+app.register_blueprint(users_bp, url_prefix='/users')
+app.register_blueprint(groups_bp, url_prefix='/groups')
+app.register_blueprint(groupmember_bp, url_prefix='/group-members')
 
 @app.route('/')
 def hello():

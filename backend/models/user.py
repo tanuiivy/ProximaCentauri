@@ -12,5 +12,8 @@ class User(db.Model, SerializerMixin):
     group_id = db.Column(db.Integer, db.ForeignKey('groups.group_id'), nullable=True)
     groupmember = db.relationship('GroupMember', back_populates='user', lazy=True)
 
+
+    serialize_rules = ('-groupmember', '-password')
+    
 def __repr__(self):
     return f"<User {self.username}>"
