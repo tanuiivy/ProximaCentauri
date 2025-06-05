@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify #blueprint allows for modular routing instead of all routes in app.py: request allows access to form data:jsonify converts dictionaries into JSON responses
 from extensions import db
 from models.user import User
-from werkzeug.security import generate_password_hash, check_password_hash #generate_password_hash converts password into hashed version before saving: check_password_hash compare hashed with plain text
+#rom werkzeug.security import generate_password_hash, check_password_hash #generate_password_hash converts password into hashed version before saving: check_password_hash compare hashed with plain text
 
 authentication_bp = Blueprint('authentication', __name__)
 #signup
