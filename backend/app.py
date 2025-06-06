@@ -4,6 +4,7 @@ from routes.authentication import authentication_bp
 from routes.users import users_bp
 from routes.group import groups_bp
 from routes.groupmember import groupmember_bp
+from routes.transactions import transactions_bp
 
 class Config:
     SQLALCHEMY_DATABASE_URI = 'sqlite:///app.db'  
@@ -22,6 +23,7 @@ app.register_blueprint(authentication_bp, url_prefix='/auth')
 app.register_blueprint(users_bp, url_prefix='/users')
 app.register_blueprint(groups_bp, url_prefix='/groups')
 app.register_blueprint(groupmember_bp, url_prefix='/group-members')
+app.register_blueprint(transactions_bp, url_prefix='/transactions')
 
 @app.route('/')
 def hello():
