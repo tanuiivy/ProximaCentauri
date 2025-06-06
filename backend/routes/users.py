@@ -1,4 +1,5 @@
 from flask import Blueprint,  request, jsonify 
+from werkzeug.security import generate_password_hash
 from extensions import db
 from models.user import User
 
@@ -20,8 +21,9 @@ def create_user():
     if User.query.filter((User.username == username)).first():
         return jsonify({'error': 'Username already exists'}), 400
 
+    hashed_password = generate_password_hash(password)
     # Create a new user
-    new_user = User(username=username, email=email, password=password)
+    new_user = User(username=username, email=email, password=hashed_password)
 
     # Add to the database
     db.session.add(new_user)

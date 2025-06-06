@@ -56,6 +56,25 @@ def get_user_groups(username):
 
     return jsonify(groups_data), 200
 
+# Get a specific member's role in a group
+@groupmember_bp.route('/group-members/<group_name>/<username>', methods=['GET'])
+def get_member_role(group_name, username):
+    user = User.query.filter_by(username=username).first()
+    group = Group.query.filter_by(group_name=group_name).first()
+    if not user or not group:
+        return jsonify({'error': 'User or Group not found'}), 404
+
+    member = GroupMember.query.filter_by(user_id=user.id, group_id=group.id).first()
+    if not member:
+        return jsonify({'error': f'{username} is not a member of {group_name}'}), 404
+
+    return jsonify({
+        'username': username,
+        'group': group_name,
+        'role': member.role,
+        'joined_at': member.joined_at
+    }), 200
+
 #Update a group member's role
 @groupmember_bp.route('/group-members/<group_name>/<username>', methods=['PUT'])
 def update_group_member(group_name, username):

@@ -10,8 +10,9 @@ class Group(db.Model, SerializerMixin):
     
     users = db.relationship('User', backref='group', lazy=True)
     groupmember= db.relationship('GroupMember', back_populates='group', lazy=True)
+    transactions = db.relationship('Transaction', back_populates='group', lazy=True)
 
-    serialize_rules = ('-users', '-groupmember')
+    serialize_rules = ('-users', '-groupmember', '-transactions')
 
     def __repr__(self):
         return f"<Group {self.group_name}>"
