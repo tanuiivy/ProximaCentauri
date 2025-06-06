@@ -28,7 +28,7 @@ def create_transaction():
     #Creating the transaction
     transaction = Transaction(
         user_id=user.id,
-        group_id=group.id,
+        group_id=group.group_id,
         amount=amount,
         transaction_type=transaction_type
     )
@@ -36,7 +36,7 @@ def create_transaction():
     db.session.add(transaction)
     db.session.commit()
 
-    return jsonify(transaction.serialize()), 201
+    return jsonify(transaction.to_dict()), 201
 
 # Get all transactions from a user in a group
 @transactions_bp.route('/<username>/<group_id>', methods=['GET'])
@@ -47,9 +47,9 @@ def get_user_transactions(username, group_id):
     if not user or not group:
         return jsonify({'error': 'User or Group not found'}), 404
 
-    transactions = Transaction.query.filter_by(user_id=user.id, group_id=group.id).all()
+    transactions = Transaction.query.filter_by(user_id=user.id, group_id=group.group_id).all()
 
-    return jsonify([transaction.serialize() for transaction in transactions]), 200
+    return jsonify([transaction.to_dict() for transaction in transactions]), 200
 
 #Get user balance in a group
 @transactions_bp.route('/balance/<username>/<group_id>', methods=['GET'])
@@ -60,7 +60,7 @@ def get_user_balance(username, group_id):
     if not user or not group:
         return jsonify({'error': 'User or Group not found'}), 404
 
-    transactions = Transaction.query.filter_by(user_id=user.id, group_id=group.id).all()
+    transactions = Transaction.query.filter_by(user_id=user.id, group_id=group.group_id).all()
     balance = sum(t.amount for t in transactions)
 
     if balance > 0:
