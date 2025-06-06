@@ -1,0 +1,1 @@
+//# UI card to display group info (reused in lists)
