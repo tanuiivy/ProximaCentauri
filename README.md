@@ -16,6 +16,7 @@ Proxima Centauri is a fintech application designed as an alternative to traditio
 │ ├── users.py
 │ ├── group.py
 │ └── groupmember.py
+└── transactions.py
 ├── migrations/ # DB migration files
 ├── requirements.txt # Required packages
 └── instance/ # Contains app.db (SQLite file)
@@ -33,6 +34,10 @@ Proxima Centauri is a fintech application designed as an alternative to traditio
 3. **GroupMember Model**
    - Junction table with additional attributes
    - Tracks roles and join dates
+
+4. **Transaction Model**
+   - Tracks financial activity: savings, loans, repayments
+   - Fields include amount, interest, type, status, timestamp
 
 # API ENDPOINTS
 1. **Authentication**
@@ -97,5 +102,15 @@ PUT /group-members/<group_name>/<username>
 
 DELETE /group-members/<group_name>/<username>
 → Remove a user from a group
+
+5. **Transactions**
+POST /transactions/
+→ Record a new transaction for a user in a group. This includes deposits or withdrawals using the transaction_type field.
+
+GET /transactions/<username>/<group_id>
+→ Retrieve all transactions made by a specific user in a given group.
+
+GET /transactions/balance/<username>/<group_id>
+→ Calculate and return the user’s current balance in the specified group. Also shows whether it is a positive, negative, or zero balance.
 
 ## Testing done with postman ##
