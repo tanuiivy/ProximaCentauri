@@ -17,7 +17,8 @@ app.config.from_object(Config)
 # Initialize extensions
 db.init_app(app)
 migrate.init_app(app, db)
-cors.init_app(app)
+cors.init_app(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+
 
 app.register_blueprint(authentication_bp, url_prefix='/auth')
 app.register_blueprint(users_bp, url_prefix='/users')
