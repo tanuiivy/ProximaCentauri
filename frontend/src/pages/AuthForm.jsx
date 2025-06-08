@@ -14,7 +14,7 @@ const AuthForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = isLogin ? "/auth/login" : "/auth/signup";
+    const url = `${BASE_URL}${isLogin ? "/auth/login" : "/auth/signup"}`;
     const payload = isLogin
       ? { username, password }
       : { username, email, password };
@@ -30,6 +30,7 @@ const AuthForm = () => {
       if (response.ok) {
         setMessage(data.message || (isLogin ? "Login successful!" : "Signup successful!"));
         if (isLogin) {
+          localStorage.setItem("username", username);
           navigate("/dashboard");
         } else {
           setTimeout(() => setIsLogin(true), 1000);
@@ -99,11 +100,6 @@ const AuthForm = () => {
                 required
               />
             </div>
-            {isLogin && (
-              <div className="pass-link">
-                <a href="#">Forgot password?</a>
-              </div>
-            )}
             <div className="field btn">
               <div className="btn-layer"></div>
               <input type="submit" value={isLogin ? "Login" : "Signup"} />
