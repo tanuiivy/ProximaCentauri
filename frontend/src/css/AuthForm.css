@@ -1,6 +1,6 @@
 /* AuthForm.css */
 body {
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(to right, #003366, #004080, #0059b3, #0073e6);
   min-height: 100vh;
   display: grid;

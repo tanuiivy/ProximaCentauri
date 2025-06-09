@@ -7,6 +7,7 @@ const BASE_URL = 'http://localhost:5000';
 const Dashboard = () => {
   const [username, setUsername] = useState(''); 
   const [groups, setGroups] = useState([]);
+  const [userBalances, setUserBalances] = useState([]);
 
   useEffect(() => {
      const savedUsername = localStorage.getItem("username");
@@ -14,22 +15,37 @@ const Dashboard = () => {
       setUsername(savedUsername);
   }
 
-    fetch(`${BASE_URL}/groups/`)
-      .then(res => res.json())
-      .then(data => setGroups(data))
-      .catch(err => console.error('Error fetching groups:', err));
+  const fetchData = async () => {
+    try{
+      const response = await fetch(`${BASE_URL}/groups/`);
+      const groupData = await response.json();
+      setGroups(groupData);
+
+      const balances = await Promise.all(groupData.map(group =>
+        fetch(`${BASE_URL}/transactions/balance/${savedUsername}/${group.group_id}`)
+          .then(res => res.json())
+      ));
+      setUserBalances(balances);
+    } catch (error) {
+      console.error('Error fetching groups:', error);
+    }
+  }
+  fetchData();
   }, []);
 
   return (
-  
       <div className="main-content">
         <h1>Karibu, {username}</h1>
-
+      
         <div className="cards">
-          <div className="card balance-card">
-            <h3>Total Balance</h3>
-            <p className="amount">Ksh 15,241.45</p>
-          </div>
+          {userBalances.map((balance, idx) => (
+            <div className="card balance-card" key={idx}>
+              <h3>Total Balance</h3>
+              <p className="amount">Ksh {Number(balance).toFixed(2)}</p>
+              <p>{balance.message}</p>
+              <p><strong>Group:</strong> {balance.group}</p>
+            </div>
+          ))}
           <div className="card groups-card">
             <h3>Your Groups</h3>
             <ul>

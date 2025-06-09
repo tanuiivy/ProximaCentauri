@@ -154,7 +154,7 @@ Proxima Centauri is a fintech application designed as an alternative to traditio
 All API endpoints were tested using **Postman** with appropriate request bodies and status code validation.
 
 ---
-💻 Frontend Overview
+## 💻 Frontend Overview
 
 The frontend is built with **React** and styled using custom CSS.
 ---
@@ -166,4 +166,4 @@ The frontend is built with **React** and styled using custom CSS.
   - Balance display
   - Logout functionality
 
-Phase 4 Project – June 2025
+**Phase 4 Project – June 2025**

@@ -1,0 +1,81 @@
+.groups-page {
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  margin-left: 200px;
+}
+
+.group-form {
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.group-form input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 200px;
+}
+
+.group-form button {
+  padding: 0.5rem 1rem;
+  background: #0059b3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.group-form button:hover {
+  background: #003366;
+}
+
+.group-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+}
+
+.group-item {
+  background: #f0f4f8;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.group-item button {
+  margin-left: 0.5rem;
+  background: #0073e6;
+  border: none;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.group-item button:hover {
+  background: #004080;
+}
+
+.group-details {
+  padding: 1rem;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+}
+
+.member-list, .tx-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.member-list li, .tx-list li {
+  margin-bottom: 0.5rem;
+  background: #f6f7fb;
+  padding: 0.5rem;
+  border-radius: 6px;
+}

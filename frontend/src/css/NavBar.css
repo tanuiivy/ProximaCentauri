@@ -1,7 +1,9 @@
+/* NavBar.css */
 .sidebar {
   width: 200px;
   background: linear-gradient(to right, #003366, #004080, #0059b3, #0073e6);
   color: white;
+  font-family: 'Segoe UI', sans-serif;
   height: 100vh;
   padding: 2rem 1rem;
   position: fixed;
