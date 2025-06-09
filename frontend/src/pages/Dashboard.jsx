@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../pages/css/Dashboard.css';
+import '../css/Dashboard.css'; 
+import NavBar from '../components/NavBar';
 
 const BASE_URL = 'http://localhost:5000';
 
 const Dashboard = () => {
   const [username, setUsername] = useState(''); 
   const [groups, setGroups] = useState([]);
-  const navigate = useNavigate();
-
-  //log out
-  const handleLogout = () => {
-    localStorage.removeItem("username"); 
-    navigate("/"); 
-  };
 
   useEffect(() => {
      const savedUsername = localStorage.getItem("username");
@@ -28,21 +21,8 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="dashboard">
-      <aside className="sidebar">
-        <h2 className="brand">Proxima Centauri</h2>
-        <nav>
-          <ul>
-            <li className="active">Dashboard</li>
-            <li>Groups</li>
-            <li>Transactions</li>
-            <li>Profile</li>
-          </ul>
-          <button className="logout-btn" onClick={handleLogout}>Logout</button>
-        </nav>
-      </aside>
-
-      <main className="main-content">
+  
+      <div className="main-content">
         <h1>Karibu, {username}</h1>
 
         <div className="cards">
@@ -50,7 +30,6 @@ const Dashboard = () => {
             <h3>Total Balance</h3>
             <p className="amount">Ksh 15,241.45</p>
           </div>
-
           <div className="card groups-card">
             <h3>Your Groups</h3>
             <ul>
@@ -68,8 +47,8 @@ const Dashboard = () => {
         <div className="transactions">
           <h3>Recent Transactions</h3>
         </div>
-      </main>
-    </div>
+      </div>
+   
   );
 };
 

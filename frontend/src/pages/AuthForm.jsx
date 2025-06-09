@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import './css/AuthForm.css';
+import '../css/AuthForm.css'; 
 
 const BASE_URL = 'http://localhost:5000';
 
